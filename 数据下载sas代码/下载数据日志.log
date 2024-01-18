@@ -1,0 +1,465 @@
+NOTE: Copyright (c) 2002-2012 by SAS Institute Inc., Cary, NC, USA.
+NOTE: SAS (r) Proprietary Software 9.4 (TS1M2 DBCS3170)
+      Licensed to SIMON FRASER UNIVERSITY, Site 70125321.
+NOTE: This session is executing on the X64_8HOME  platform.
+
+
+
+NOTE: Updated analytical products:
+
+      SAS/STAT 13.2
+      SAS/ETS 13.2
+      SAS/OR 13.2
+      SAS/IML 13.2
+      SAS/QC 13.2
+
+NOTE: Additional host information:
+
+ X64_8HOME WIN 6.2.9200  Workstation
+
+NOTE: SAS initialization used:
+      real time           0.79 seconds
+      cpu time            0.49 seconds
+
+1    %let ressethf=202.204.172.144;
+2    options comamid=TCP remote=ressethf;
+3    signon ressethf username=resset password=XXXXXX;
+NOTE: Remote signon to RESSETHF commencing (SAS Release 9.04.01M2P072314).
+NOTE: 无法打开 SASUSER.PROFILE。系统将改为打开 WORK.PROFILE。
+NOTE: 所有配置文件的更改将在会话结束后丢失。
+NOTE: Copyright (c) 2002-2012 by SAS Institute Inc., Cary, NC, USA.
+NOTE: SAS (r) Proprietary Software 9.4 (TS1M2 DBCS3170)
+      Licensed to CNAM LICENCE CAMPUS, Site 70159246.
+NOTE: 该会话正在平台 X64_S08R2  上执行。
+
+
+
+NOTE: Updated analytical products:
+
+      SAS/STAT 13.2
+      SAS/ETS 13.2
+      SAS/OR 13.2
+      SAS/IML 13.2
+      SAS/QC 13.2
+
+NOTE: Additional host information:
+
+ X64_S08R2 WIN 6.1.7601 Service Pack 1 Server
+
+NOTE: “SAS 初始化”所用时间:
+      实际时间          0.22 秒
+      CPU 时间          0.20 秒
+
+NOTE: Remote signon to RESSETHF complete.
+4
+5    /*以下代码将建立分笔高频数据远程逻辑库*/
+6    /*libname HF2005 'D:\HF2005' server=ressethf; */
+7    /*libname HF2006 'D:\HF2006' server=ressethf; */
+8    /*libname HF2007 'D:\HF2007' server=ressethf; */
+9    /*libname HF2008 'D:\HF2008' server=ressethf; */
+10   /*libname HF2009 'D:\HF2009' server=ressethf; */
+11   /*libname HF2010 'D:\HF2010' server=ressethf; */
+12   /*libname HF2011 'D:\HF2011' server=ressethf; */
+13   /*libname HF2012 'D:\HF2012' server=ressethf; */
+14   /*libname HF2013 'D:\HF2013' server=ressethf; */
+15   /*libname HF2014 'D:\HF2014' server=ressethf; */
+16   /*libname HF2015 'D:\HF2015' server=ressethf; */
+17   libname HF2016 'F:\HF2016' server=ressethf;
+NOTE: Libref HF2016 was successfully assigned as follows:
+      Engine:        REMOTE
+      Physical Name: F:\HF2016
+18   /*libname HF2017 'F:\HF2017' server=ressethf; */
+19   /*libname HF2018 'E:\HF2018' server=ressethf; */
+20   /*libname HF2019 'G:\HF2019' server=ressethf; */
+21   /*libname HF2020 'E:\HF2020' server=ressethf; */
+22   /*libname HF2021 'I:\HF2021' server=ressethf; */
+23   /*libname HF2022 'J:\HF2022' server=ressethf; */
+24
+25   /*以下代码将建立分时高频数据远程逻辑库*/
+26   /*libname HF1999M 'J:\HF1999M' server=ressethf; */
+27   /*libname HF2000M 'J:\HF2000M' server=ressethf; */
+28   /*libname HF2001M 'J:\HF2001M' server=ressethf; */
+29   /*libname HF2002M 'J:\HF2002M' server=ressethf; */
+30   /*libname HF2003M 'J:\HF2003M' server=ressethf; */
+31   /*libname HF2004M 'J:\HF2004M' server=ressethf; */
+32   /*libname HF2005M 'J:\HF2005M' server=ressethf; */
+33   /*libname HF2006M 'J:\HF2006M' server=ressethf; */
+34   /*libname HF2007M 'J:\HF2007M' server=ressethf; */
+35   /*libname HF2008M 'J:\HF2008M' server=ressethf; */
+36   /*libname HF2009M 'J:\HF2009M' server=ressethf; */
+37   /*libname HF2010M 'J:\HF2010M' server=ressethf; */
+38   /*libname HF2011M 'J:\HF2011M' server=ressethf; */
+39   /*libname HF2012M 'J:\HF2012M' server=ressethf; */
+40   /*libname HF2013M 'J:\HF2013M' server=ressethf; */
+41   /*libname HF2014M 'J:\HF2014M' server=ressethf; */
+42   /*libname HF2015M 'J:\HF2015M' server=ressethf; */
+43   libname HF2016M 'J:\HF2016M' server=ressethf;
+NOTE: Libref HF2016M was successfully assigned as follows:
+      Engine:        REMOTE
+      Physical Name: J:\HF2016M
+44   /*libname HF2017M 'J:\HF2017M' server=ressethf; */
+45   /*libname HF2018M 'K:\HF2018M' server=ressethf; */
+46   /*libname HF2019M 'K:\HF2019M' server=ressethf; */
+47   /*libname HF2020M 'K:\HF2020M' server=ressethf; */
+48   /*libname HF2021M 'K:\HF2021M' server=ressethf; */
+49   /*libname HF2022M 'K:\HF2022M' server=ressethf;*/
+50
+51   data a; /*上面的语句，data a中最后的a，是输出数据集的名字，可以自行修改*/
+52   set HF2016.StkHF2016_600000SH;
+53   where qdate >= '03Aug2016'd and qdate <= '23Aug2016'd;
+54   /*where语句是筛选语句，请在后面写明查询条件，将会返回符合查询条件的观测，如果没有符合条件的观测，将会创建空数据集。*/
+55   /*查询条件在指定时间时可以直接使用字符串的方式指定，但是格式必须固定为这种格式 '29Jan2016'd */
+56   run;
+
+NOTE: There were 32018 observations read from the data set HF2016.STKHF2016_600000SH.
+      WHERE (qdate>='03AUG2016'D and qdate<='23AUG2016'D);
+NOTE: The data set WORK.A has 32018 observations and 51 variables.
+NOTE: DATA statement used (Total process time):
+      real time           4.20 seconds
+      cpu time            0.21 seconds
+
+
+57
+58   proc export data=a
+59   /*data选项指定需要导出的数据集名称，我们在前面使用的是a，请您根据自己的实际情况进行填写*/
+60                  outfile='E:/学习资料/temp/高频数据下载/数据下载/out.csv'
+61   /*导出文件位置，注意文件的扩展名需要和文件类型对应，例如dbms=csv时，outfile文件扩展名应为csv，如果不是，那么SAS会在自动在
+61 ! 后面加上.csv的后缀名*/
+62             dbms=csv                /*指定输出格式为csv*/
+63              replace                /*如果已有同名文件则自动覆盖，如果不指定replace，那么SAS会保留原文件，不会写入*/
+64              ;
+65   run;
+
+66    /**********************************************************************
+67    *   PRODUCT:   SAS
+68    *   VERSION:   9.4
+69    *   CREATOR:   External File Interface
+70    *   DATE:      18JAN15
+71    *   DESC:      Generated SAS Datastep Code
+72    *   TEMPLATE SOURCE:  (None Specified.)
+73    ***********************************************************************/
+74       data _null_;
+75       %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+76       %let _EFIREC_ = 0;     /* clear export record count macro variable */
+77       file 'E:/学习资料/temp/高频数据下载/数据下载/out.csv' delimiter=',' DSD DROPOVER lrecl=32767;
+78       if _n_ = 1 then        /* write column names or labels */
+79        do;
+80          put
+81             "Exchflg"
+82          ','
+83             "Code"
+84          ','
+85             "Code_Mkt"
+86          ','
+87             "SecuNm"
+88          ','
+89             "MTime"
+90          ','
+91             "QTime"
+92          ','
+93             "Qdate"
+94          ','
+95             "PrevClPr"
+96          ','
+97             "Oppr"
+98          ','
+99             "Hipr"
+100         ','
+101            "Lopr"
+102         ','
+103            "TPrice"
+104         ','
+105            "TVolume"
+106         ','
+107            "TSum"
+108         ','
+109            "TDeals"
+110         ','
+111            "TVolume_accu"
+112         ','
+113            "TSum_accu"
+114         ','
+115            "TDeals_accu"
+116         ','
+117            "PE1"
+118         ','
+119            "PE2"
+120         ','
+121            "ChangePCT1"
+122         ','
+123            "ChangePCT2"
+124         ','
+125            "OpInterest"
+126         ','
+127            "Bidpr1"
+128         ','
+129            "Bidpr2"
+130         ','
+131            "Bidpr3"
+132         ','
+133            "Bidpr4"
+134         ','
+135            "Bidpr5"
+136         ','
+137            "Bidvol1"
+138         ','
+139            "Bidvol2"
+140         ','
+141            "Bidvol3"
+142         ','
+143            "Bidvol4"
+144         ','
+145            "Bidvol5"
+146         ','
+147            "Askpr1"
+148         ','
+149            "Askpr2"
+150         ','
+151            "Askpr3"
+152         ','
+153            "Askpr4"
+154         ','
+155            "Askpr5"
+156         ','
+157            "Askvol1"
+158         ','
+159            "Askvol2"
+160         ','
+161            "Askvol3"
+162         ','
+163            "Askvol4"
+164         ','
+165            "Askvol5"
+166         ','
+167            "Trdirec"
+168         ','
+169            "Absspread"
+170         ','
+171            "Respread"
+172         ','
+173            "Abseffspread"
+174         ','
+175            "Reeffspread"
+176         ','
+177            "Depth1"
+178         ','
+179            "Depth2"
+180         ','
+181            "RESID"
+182         ;
+183       end;
+184     set  A   end=EFIEOD;
+185         format Exchflg 1. ;
+186         format Code $6. ;
+187         format Code_Mkt $10. ;
+188         format SecuNm $12. ;
+189         format MTime datetime22.2 ;
+190         format QTime datetime22.2 ;
+191         format Qdate yymmdd10. ;
+192         format PrevClPr 12.4 ;
+193         format Oppr 12.4 ;
+194         format Hipr 12.4 ;
+195         format Lopr 12.4 ;
+196         format TPrice 12.4 ;
+197         format TVolume 16. ;
+198         format TSum 18.2 ;
+199         format TDeals 12. ;
+200         format TVolume_accu 23. ;
+201         format TSum_accu 23.2 ;
+202         format TDeals_accu 20. ;
+203         format PE1 9.2 ;
+204         format PE2 9.2 ;
+205         format ChangePCT1 12.4 ;
+206         format ChangePCT2 12.4 ;
+207         format OpInterest 20. ;
+208         format Bidpr1 12.4 ;
+209         format Bidpr2 12.4 ;
+210         format Bidpr3 12.4 ;
+211         format Bidpr4 12.4 ;
+212         format Bidpr5 12.4 ;
+213         format Bidvol1 16. ;
+214         format Bidvol2 16. ;
+215         format Bidvol3 16. ;
+216         format Bidvol4 16. ;
+217         format Bidvol5 16. ;
+218         format Askpr1 12.4 ;
+219         format Askpr2 12.4 ;
+220         format Askpr3 12.4 ;
+221         format Askpr4 12.4 ;
+222         format Askpr5 12.4 ;
+223         format Askvol1 16. ;
+224         format Askvol2 16. ;
+225         format Askvol3 16. ;
+226         format Askvol4 16. ;
+227         format Askvol5 16. ;
+228         format Trdirec $1. ;
+229         format Absspread 12.4 ;
+230         format Respread 12.8 ;
+231         format Abseffspread 12.4 ;
+232         format Reeffspread 12.8 ;
+233         format Depth1 18.2 ;
+234         format Depth2 18.2 ;
+235         format RESID 20. ;
+236       do;
+237         EFIOUT + 1;
+238         put Exchflg @;
+239         put Code $ @;
+240         put Code_Mkt $ @;
+241         put SecuNm $ @;
+242         put MTime @;
+243         put QTime @;
+244         put Qdate @;
+245         put PrevClPr @;
+246         put Oppr @;
+247         put Hipr @;
+248         put Lopr @;
+249         put TPrice @;
+250         put TVolume @;
+251         put TSum @;
+252         put TDeals @;
+253         put TVolume_accu @;
+254         put TSum_accu @;
+255         put TDeals_accu @;
+256         put PE1 @;
+257         put PE2 @;
+258         put ChangePCT1 @;
+259         put ChangePCT2 @;
+260         put OpInterest @;
+261         put Bidpr1 @;
+262         put Bidpr2 @;
+263         put Bidpr3 @;
+264         put Bidpr4 @;
+265         put Bidpr5 @;
+266         put Bidvol1 @;
+267         put Bidvol2 @;
+268         put Bidvol3 @;
+269         put Bidvol4 @;
+270         put Bidvol5 @;
+271         put Askpr1 @;
+272         put Askpr2 @;
+273         put Askpr3 @;
+274         put Askpr4 @;
+275         put Askpr5 @;
+276         put Askvol1 @;
+277         put Askvol2 @;
+278         put Askvol3 @;
+279         put Askvol4 @;
+280         put Askvol5 @;
+281         put Trdirec $ @;
+282         put Absspread @;
+283         put Respread @;
+284         put Abseffspread @;
+285         put Reeffspread @;
+286         put Depth1 @;
+287         put Depth2 @;
+288         put RESID ;
+289         ;
+290       end;
+291      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+292      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+293      run;
+
+NOTE: The file 'E:/学习资料/temp/高频数据下载/数据下载/out.csv' is:
+      Filename=E:\学习资料\temp\高频数据下载\数据下载\out.csv,
+      RECFM=V,LRECL=32767,File Size (bytes)=0,
+      Last Modified=2015年01月18日 12时38分58秒,
+      Create Time=2015年01月18日 12时38分58秒
+
+NOTE: 32019 records were written to the file 'E:/学习资料/temp/高频数据下载/数据下载/out.csv'.
+      The minimum record length was 165.
+      The maximum record length was 403.
+NOTE: There were 32018 observations read from the data set WORK.A.
+NOTE: DATA statement used (Total process time):
+      real time           0.24 seconds
+      cpu time            0.23 seconds
+
+
+32018 records created in E:/学习资料/temp/高频数据下载/数据下载/out.csv from A.
+
+
+NOTE: "E:/学习资料/temp/高频数据下载/数据下载/out.csv" file was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           0.68 seconds
+      cpu time            0.29 seconds
+
+
+
+294  %let ressethf=202.204.172.144;
+295  options comamid=TCP remote=ressethf;
+296  signon ressethf username=resset password=XXXXXX;
+NOTE: A link to RESSETHF has been previously established. SIGNON is not necessary.
+297
+298  /*以下代码将建立分笔高频数据远程逻辑库*/
+299  /*libname HF2005 'D:\HF2005' server=ressethf; */
+300  /*libname HF2006 'D:\HF2006' server=ressethf; */
+301  /*libname HF2007 'D:\HF2007' server=ressethf; */
+302  /*libname HF2008 'D:\HF2008' server=ressethf; */
+303  /*libname HF2009 'D:\HF2009' server=ressethf; */
+304  /*libname HF2010 'D:\HF2010' server=ressethf; */
+305  /*libname HF2011 'D:\HF2011' server=ressethf; */
+306  /*libname HF2012 'D:\HF2012' server=ressethf; */
+307  /*libname HF2013 'D:\HF2013' server=ressethf; */
+308  /*libname HF2014 'D:\HF2014' server=ressethf; */
+309  /*libname HF2015 'D:\HF2015' server=ressethf; */
+310  libname HF2016 'F:\HF2016' server=ressethf;
+NOTE: Libref HF2016 was successfully assigned as follows:
+      Engine:        REMOTE
+      Physical Name: F:\HF2016
+311  /*libname HF2017 'F:\HF2017' server=ressethf; */
+312  /*libname HF2018 'E:\HF2018' server=ressethf; */
+313  /*libname HF2019 'G:\HF2019' server=ressethf; */
+314  /*libname HF2020 'E:\HF2020' server=ressethf; */
+315  /*libname HF2021 'I:\HF2021' server=ressethf; */
+316  /*libname HF2022 'J:\HF2022' server=ressethf; */
+317
+318  /*以下代码将建立分时高频数据远程逻辑库*/
+319  /*libname HF1999M 'J:\HF1999M' server=ressethf; */
+320  /*libname HF2000M 'J:\HF2000M' server=ressethf; */
+321  /*libname HF2001M 'J:\HF2001M' server=ressethf; */
+322  /*libname HF2002M 'J:\HF2002M' server=ressethf; */
+323  /*libname HF2003M 'J:\HF2003M' server=ressethf; */
+324  /*libname HF2004M 'J:\HF2004M' server=ressethf; */
+325  /*libname HF2005M 'J:\HF2005M' server=ressethf; */
+326  /*libname HF2006M 'J:\HF2006M' server=ressethf; */
+327  /*libname HF2007M 'J:\HF2007M' server=ressethf; */
+328  /*libname HF2008M 'J:\HF2008M' server=ressethf; */
+329  /*libname HF2009M 'J:\HF2009M' server=ressethf; */
+330  /*libname HF2010M 'J:\HF2010M' server=ressethf; */
+331  /*libname HF2011M 'J:\HF2011M' server=ressethf; */
+332  /*libname HF2012M 'J:\HF2012M' server=ressethf; */
+333  /*libname HF2013M 'J:\HF2013M' server=ressethf; */
+334  /*libname HF2014M 'J:\HF2014M' server=ressethf; */
+335  /*libname HF2015M 'J:\HF2015M' server=ressethf; */
+336  libname HF2016M 'J:\HF2016M' server=ressethf;
+NOTE: Libref HF2016M was successfully assigned as follows:
+      Engine:        REMOTE
+      Physical Name: J:\HF2016M
+337  /*libname HF2017M 'J:\HF2017M' server=ressethf; */
+338  /*libname HF2018M 'K:\HF2018M' server=ressethf; */
+339  /*libname HF2019M 'K:\HF2019M' server=ressethf; */
+340  /*libname HF2020M 'K:\HF2020M' server=ressethf; */
+341  /*libname HF2021M 'K:\HF2021M' server=ressethf; */
+342  /*libname HF2022M 'K:\HF2022M' server=ressethf;*/
+343
+344  data a;
+345  set HF2016.StkHF2016_600000SH;
+346  where qdate >= '03Aug2016'd and qdate <= '23Aug2016'd;
+347  run;
+
+NOTE: There were 32018 observations read from the data set HF2016.STKHF2016_600000SH.
+      WHERE (qdate>='03AUG2016'D and qdate<='23AUG2016'D);
+NOTE: The data set WORK.A has 32018 observations and 51 variables.
+NOTE: DATA statement used (Total process time):
+      real time           3.93 seconds
+      cpu time            0.32 seconds
+
+
+348
+349  /*proc export data = a                  */
+350  /*          outfile = 'E:/学习资料/temp/高频数据下载/数据下载/out.csv' */
+351  /*          dbms = csv*/
+352  /*          replace;*/
+353  /*run;*/
+354  /**/
+355  /*signoff;*/
+
