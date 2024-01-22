@@ -1,4 +1,4 @@
-# HFDP:下载和处理Resset高频数据(High Frequency Data Processing)
+# HFDP:下载和处理Resset高频数据
 UIBE图书馆网站:http://lib.uibe.edu.cn/zy/sjk/zwsjk/8f6862d0b32d4803b8f7653b06ea27a6.htm\
 sas下载安装参考:https://mp.weixin.qq.com/s/FVQ7rqdGNDtaZEclk6Askg
 ## 数据下载流程
