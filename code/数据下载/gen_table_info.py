@@ -13,7 +13,7 @@ df_table = pd.DataFrame(np.full([1,9],np.nan)) #分时逻辑库数据表代码
 # code        | 数据表对应证券代码
 df_table.columns = ['tablename','libraryname','format','pure','type','freq','year','mkt','code']
 ## 建立逻辑库表格
-df_filename = pd.DataFrame(os.listdir('../数据代码列表/原始逻辑库数据表代码'))
+df_filename = pd.DataFrame(os.listdir('../../数据代码列表/原始逻辑库代码'))
 df_filename.columns = ['filename']
 ## 通过逻辑库的format和year两个参数判断数据表代码格式
 df_filename['libraryname'] = df_filename['filename'].apply(lambda x:x[:-4]) #逻辑库名称
@@ -69,7 +69,7 @@ def info(x,libraryname,format,year):
             return np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan
 ## 循环全部42个逻辑库，提取逻辑库中的全部数据表信息
 for i in range(len(df_filename)): 
-    df_ = pd.read_csv('../数据代码列表/原始逻辑库数据表代码/{}'.format(df_filename['filename'][i]))
+    df_ = pd.read_csv('../../数据代码列表/原始逻辑库代码/{}'.format(df_filename['filename'][i]))
     libraryname = df_filename['libraryname'][i]
     format = df_filename['format'][i]
     year = df_filename['year'][i]
@@ -77,4 +77,4 @@ for i in range(len(df_filename)):
     table_.columns = ['tablename','libraryname','format','pure','type','freq','year','mkt','code']
     df_table = pd.concat([df_table,table_])
 df_table.dropna(how = 'all',inplace = True) #删除无效数据，即全为空值的行
-df_table.to_csv('../数据代码列表/全部数据表信息.csv',index = False)
+df_table.to_csv('../../数据代码列表/全部数据表信息.csv',index = False)
