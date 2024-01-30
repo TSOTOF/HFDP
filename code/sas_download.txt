@@ -35,7 +35,7 @@ signon ressethf username=resset password=resset;
 /*libname HF2007M 'J:\HF2007M' server=ressethf; */
 /*libname HF2008M 'J:\HF2008M' server=ressethf; */
 /*libname HF2009M 'J:\HF2009M' server=ressethf; */
-libname HF2010M 'J:\HF2010M' server=ressethf;
+/*libname HF2010M 'J:\HF2010M' server=ressethf; */
 /*libname HF2011M 'J:\HF2011M' server=ressethf; */
 /*libname HF2012M 'J:\HF2012M' server=ressethf; */
 /*libname HF2013M 'J:\HF2013M' server=ressethf; */
