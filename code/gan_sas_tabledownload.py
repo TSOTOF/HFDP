@@ -66,7 +66,8 @@ for i in range(len(df_code)):
     libraryname = df_code.iloc[i,1]
     tablename = df_code.iloc[i,0]
     str = \
-'''proc export
+'''
+proc export
 data = {}.{}
 outfile = "../../原始数据/{}.csv"
 dbms = csv 

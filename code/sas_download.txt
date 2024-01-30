@@ -52,114 +52,133 @@ signon ressethf username=resset password=resset;
 /**************************************************************下载数据表数据**************************************************************/
 
 
+
 proc export
 data = HF2010M.SZY2010M01_1
 outfile = "../../原始数据/SZY2010M01_1.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010M02_1
 outfile = "../../原始数据/SZY2010M02_1.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010M03_1
 outfile = "../../原始数据/SZY2010M03_1.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010M04_1
 outfile = "../../原始数据/SZY2010M04_1.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010M05_1
 outfile = "../../原始数据/SZY2010M05_1.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010M06_1
 outfile = "../../原始数据/SZY2010M06_1.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010M07_1
 outfile = "../../原始数据/SZY2010M07_1.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010M08_1
 outfile = "../../原始数据/SZY2010M08_1.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010M09_1
 outfile = "../../原始数据/SZY2010M09_1.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010M10_1
 outfile = "../../原始数据/SZY2010M10_1.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010M11_1
 outfile = "../../原始数据/SZY2010M11_1.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010M12_1
 outfile = "../../原始数据/SZY2010M12_1.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010_10
 outfile = "../../原始数据/SZY2010_10.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010_15
 outfile = "../../原始数据/SZY2010_15.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010_20
 outfile = "../../原始数据/SZY2010_20.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010_30
 outfile = "../../原始数据/SZY2010_30.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010_40
 outfile = "../../原始数据/SZY2010_40.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010_5
 outfile = "../../原始数据/SZY2010_5.csv"
 dbms = csv 
 replace;
 run;
+
 proc export
 data = HF2010M.SZY2010_60
 outfile = "../../原始数据/SZY2010_60.csv"
