@@ -39,6 +39,7 @@ data = open("{}/table_download.txt".format(path),'w+')
 start = '''/**********************************************************建立远程服务器连接并登录**********************************************************/
 %let ressethf=202.204.172.144;
 options comamid=TCP remote=ressethf;
+options nonotes nosource nosource2 errors=0;
 signon ressethf username=resset password=resset;
 /*********************************************************建立分笔高频数据远程逻辑库*********************************************************/ 
 libname HF2005 'D:\HF2005' server=ressethf;
