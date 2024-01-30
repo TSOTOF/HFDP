@@ -18,11 +18,11 @@ import datetime as dt
 ## 共6个条件
 format = [1] #[0,1]
 pure = [0,1] #[0,1]
-type = ['bond'] #[np.nan,'stk','bond','indx','fund']
-freq = [60] #[np.nan,1,5,10,15,20,30,40,60]
-year = [2015] #list(range(1999,2022))
-mkt = ['sz'] #[np.nan,'sz','sh']
-df_code = pd.read_csv('../../数据代码列表/全部数据表信息.csv',low_memory = False)
+type = ['mix','stk','bond','indx','fund'] #['mix','stk','bond','indx','fund']
+freq = [1,5,10,15,20,30,40,60] #[0,1,5,10,15,20,30,40,60]
+year = list(range(1999,2022)) #list(range(1999,2022))
+mkt = ['mix','sz','sh'] #['mix','sz','sh']
+df_code = pd.read_csv('../../数据代码列表/全部数据表信息.csv',dtype = {'code': str})
 df_code_select = df_code[np.isin(df_code['format'],format)*np.isin(df_code['pure'],pure)\
                          *np.isin(df_code['type'],type)*np.isin(df_code['freq'],freq)\
                          *np.isin(df_code['year'],year)*np.isin(df_code['mkt'],mkt)]

@@ -22,7 +22,7 @@ df_filename['year'] = df_filename['filename'].apply(lambda x:int(x[2:6])) #逻�
 ## 从数据表代码中提取有效信息
 def info(x,libraryname,format,year): 
     if format == 1 and year <= 2011: #分时逻辑库1999-2011年
-        pure,type,code = 0,np.nan,np.nan
+        pure,type,code = 0,'mix','mix'
         tablename = x.iloc[0]
         freq = int(tablename.split('_')[1])
         mkt = tablename[:2].lower()
@@ -35,35 +35,37 @@ def info(x,libraryname,format,year):
             type = tablename.split(splitstr)[0].lower()
             freq = int(tablename.split(splitstr)[1].split('_')[1])
             mkt = tablename.split(splitstr)[1].split('_')[0][-2:].lower()
-            code = tablename.split(splitstr)[1].split('_')[0][:-2]
+            code = str(tablename.split(splitstr)[1].split('_')[0][:-2])
             return tablename,libraryname,format,pure,type,freq,year,mkt,code
         else:
             return np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan
     elif format == 0 and year <= 2009: #分笔逻辑库2005-2009年
-        pure,freq,mkt = 1,np.nan,np.nan
+        pure,freq,mkt = 1,0,'mix'
         splitstr = str(year)[2:] + '_'
         tablename = x.iloc[0]
         type = tablename.split(splitstr)[0].lower()
-        code = tablename.split(splitstr)[1]
+        code = str(tablename.split(splitstr)[1])
         return tablename,libraryname,format,pure,type,freq,year,mkt,code
     elif format == 0 and year >= 2010 and year <= 2011: #分笔逻辑库2010-2011年
-        pure,freq,mkt = 1,np.nan,np.nan
+        pure,freq,mkt = 1,0,'mix'
         splitstr = str(year) + '_'
         tablename = x.iloc[0]
         type = tablename.split(splitstr)[0].lower()
         try:
-            code = tablename.split(splitstr)[1]
+            code = str(tablename.split(splitstr)[1])
         except:
-            code = tablename.split(splitstr)[1][:-2]
+            code = str(tablename.split(splitstr)[1][:-2])
         return tablename,libraryname,format,pure,type,freq,year,mkt,code
     elif format == 0 and year >= 2012: #分笔逻辑库2012-2022年
-        pure,freq = 1,np.nan
+        pure,freq = 1,0
         splitstr = 'HF' + str(year) + '_'
         tablename = x.iloc[0]
         if 'hf' in tablename.lower(): #有些乱七八糟的数据表不用管
             type = tablename.split(splitstr)[0].lower()
+            if pd.isna(type):
+                type = 'mix' #2020年数据格式变乱了
             mkt = tablename.split(splitstr)[1][-2:].lower()
-            code = tablename.split(splitstr)[1][:-2]
+            code = str(tablename.split(splitstr)[1][:-2])
             return tablename,libraryname,format,pure,type,freq,year,mkt,code
         else:
             return np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan
