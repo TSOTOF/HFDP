@@ -15,12 +15,12 @@ import datetime as dt
 # 7.year        | 数据表对应数据年份(分笔:1999-2022;分时:2005-2022)
 # 8.mkt         | 数据表对应市场('sz','sh')
 # 9.code        | 数据表对应证券代码
-## 共6个条件
+## 共6个条件,条件筛选完后要看下最终会生成多少个csv文件,如果csv文件超过3万个还需要手动在sas界面点击继续
 format = [1] #[0,1]
 pure = [0,1] #[0,1]
-type = ['mix','stk','bond','indx','fund'] #['mix','stk','bond','indx','fund']
-freq = [1,5,10,15,20,30,40,60] #[0,1,5,10,15,20,30,40,60]
-year = list(range(1999,2022)) #list(range(1999,2022))
+type = ['mix','stk'] #['mix','stk','bond','indx','fund']
+freq = [10] #[0,1,5,10,15,20,30,40,60]
+year = list(range(2007,2022)) #list(range(1999,2022))
 mkt = ['mix','sz','sh'] #['mix','sz','sh']
 df_code = pd.read_csv('../../数据代码列表/全部数据表信息.csv',dtype = {'code': str})
 df_code_select = df_code[np.isin(df_code['format'],format)*np.isin(df_code['pure'],pure)\
