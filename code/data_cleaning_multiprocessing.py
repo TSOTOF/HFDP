@@ -3,17 +3,14 @@
 import os
 import pandas as pd
 import datetime
+import multiprocessing
 import time
 import re
 
-'''
-将'table_select.csv'文件置于数据集中，生成数据清洗的任务列表
-'''
+
 
 os.chdir() # 输入数据集地址
 
-
-# file_list = os.listdir()
 def datetime_trans(input_string):
     '''
     将形如"05JAN2015:13:51:35"转换为"2015/01/05 13:51:35"的形式
@@ -93,8 +90,8 @@ def data_cleaning(filename,_format,_type,freq,year,mkt,code,pure):
     data.to_csv(filename,encoding='ANSI',index=0)
 
 def run(in_q,q_len):
-    while len(in_q) != 0:
-        info = in_q.pop()
+    while in_q.empty() is False:
+        info = in_q.get()
         data_cleaning(filename = info[0] + '.csv',
                       _format = info[2],
                       pure = info[3],
@@ -103,27 +100,35 @@ def run(in_q,q_len):
                       year = info[6],
                       mkt = info[7],
                       code = info[8])
+        in_q.task_done()
         print(f'\r数据已经清洗了{(1-len(in_q)/q_len)*100:>6.1f}%',end='')
-
         
+
 
 if __name__ == '__main__':
     start = time.time()
-
+    queue = multiprocessing.Manager().Queue()
+    
     try:
         df_select = pd.read_csv('table_select.csv',encoding='utf-8')     
     except UnicodeDecodeError:
         df_select = pd.read_csv('table_select.csv',encoding='ANSI')
     
-    queue_list = []
     for value in df_select.values:
-        queue_list.append(value)
+        queue.put(value)
         
-    q_len = len(os.listdir())-1
-    run(queue_list,q_len)
-
+    q_len = queue.qsize()
+    
+    pool = multiprocessing.Pool(10)
+    for index in range(1000):
+        pool.apply_async(run,args=(queue,q_len,))
+    pool.close()
+    pool.join()
+    
+    queue.join()
     end = time.time()
     print(f"\n总耗时:{end-start}")
+    
 
     
 
